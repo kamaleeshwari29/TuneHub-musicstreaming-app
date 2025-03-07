@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #186910, #508f51, #77956e); 
+            color: white;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 230px;
+            height: 100vh;
+            position: fixed;
+            background-color: #186910;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(169, 210, 179, 0.703);
+        }
+
+        .sidebar h2 {
+            font-size: 22px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #c6f1d2;
+        }
+
+        /* Dropdown for Library */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            background-color: #0a391b;
+            padding-left: 20px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .search-bar input {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+
+        /* Song Cards */
+        .song-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .song-card {
+            background: rgb(118, 155, 123);
+            color: black;
+            border-radius: 10px;
+            padding: 15px;
+            width: 230px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .song-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .song-card h3 {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .song-card p {
+            font-size: 14px;
+            color: rgb(12, 11, 11);
+        }
+
+        .song-card audio {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 20px;
+            background: #f1f1f1;
+            padding: 5px;
+        }
+
+        /* Favorite Icon */
+        .favorite {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 22px;
+            cursor: pointer;
+            color: gray;
+        }
+
+        .favorite.liked {
+            color: rgb(241, 6, 96);
+        }
+
+        /* No Results Message */
+        .no-results {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            color: lightgray;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>TuneHub</h2>
+        <a href="index.htm">Home</a>
+        <div class="dropdown">
+            <a href="#">Library ▼</a>
+            <div class="dropdown-content">
+                <a href="favorite.htm">Favorites</a>
+                <a href="playlist.htm">Playlists</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Pick Your Mood!</h1>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search your favorite Song,Genre&Artists" id="searchInput">
+        </div>
+
+        <!-- No Results Message -->
+        <p class="no-results">No songs found.</p>
+
+        <!-- Songs -->
+        <div class="song-container" id="songContainer">
+            <div class="song-card" data-song="Aaruyire mannipaaya" data-singer="A.R.Rahman" data-mp3="Aaruyire Mannipaaya.mpeg">
+                <i class="fa-regular fa-heart favorite"></i>
+                <img src="Aaruyire mannipaaya.jpg" alt="Song Cover">
+                <h3>Aaruyire</h3>
+                <p>Genre: Indian Film Pop/Romantic</p>
+                <p>Singer:A.R.Rahman</p>
+                <audio controls>
+                    <source src="Aaruyire Mannipaaya.mpeg" type="audio/mp3">
+                </audio>
+                <button class="add-to-playlist">Add to Playlist</button>
+            </div>
+
+            <div class="song-card" data-song="Ambikapathy" data-singer="A.R.Rahman,dhanush" data-mp3="Ambikapathy.mpeg">
+                <i class="fa-regular fa-heart favorite"></i>
+                <img src="c:\MUSIC PROJECT\TuneHub\Ambikapathy.jpg" alt="Song Cover">
+                <h3>Ambikapathy</h3>
+                <p>Genre: Indian pop</p>
+                <p>Singer: A.R.Rahman,dhanush</p>
+                <audio controls>
+                    <source src="Ambikapathy.mpeg" type="audio/mp3">
+                 </audio>   
+                  
+                    <button class="add-to-playlist">Add to Playlist</button>
+            </div>
+
+            <div class="song-card" data-song="pudhu vellai mazhai" data-singer="A.R.Rahman, sujatha" data-mp3="Pudhu Vellai Mazhai.mpeg">
+                <i class="fa-regular fa-heart favorite"></i>
+                <img src="Pudhu Vellai Mazhai.jpg" alt="Song Cover">
+                <h3>Pudhu Vellai Mazhai</h3>
+                <p>Genre: Romantic/ semi classical</p>
+                <p>Singer: A.R.Rahman, sujhatha</p>
+                <audio controls>
+                    <source src="Pudhu Vellai Mazhai.mpeg" type="audio/mp3">
+                </audio>
+                <button class="add-to-playlist">Add to Playlist</button>
+            </div>
+
+            <div class="song-card" data-song="Company" data-singer="justin bieber" data-mp3="Company.mpeg">
+                <i class="fa-regular fa-heart favorite"></i>
+                <img src="Company.jpg" alt="Song Cover">
+                <h3>Company</h3>
+                <p>Genre: ElectroPop</p>
+                <p>Singer: Justin bieber</p>
+                <audio controls>
+                    <source src="Company.mpeg" type="audio/mp3">
+                </audio>
+                <button class="add-to-playlist">Add to Playlist</button>
+            </div>
+
+            <div class="song-card" data-song="KU LO SA" data-singer="Oxlade, camia cabello" data-mp3="KU LO SA.mpeg">
+                <i class="fa-regular fa-heart favorite"></i>
+                <img src="KU LO SA.jpg" alt="Song Cover">
+                <h3>KU LO SA</h3>
+                <p>Genre: Afrobeats</p>
+                <p>Singer: Oxlade,Camila cabello</p>
+                <audio controls>
+                    <source src="KU LO SA.mpeg" type="audio/mp3">
+                </audio>
+                <button class="add-to-playlist">Add to Playlist</button>
+            </div>
+
+            <div class="song-card" data-song="Borderline" data-singer="Tame Impala" data-mp3="Borderline.mpeg">
+                <i class="fa-regular fa-heart favorite"></i>
+                <img src="Border line.jpg" alt="Song Cover">
+                <h3>Borderline</h3>
+                <p>Genre: phychedelic pop/rock</p>
+                <p>Singer: Borderline</p>
+                <audio controls>
+                    <source src="Borderline.mpeg" type="audio/mp3">
+                 </audio>
+                <button class="add-to-playlist">Add to Playlist</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const favoriteIcons = document.querySelectorAll(".favorite");
+    
+            // Load saved favorites from localStorage
+            let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            let playlists = JSON.parse(localStorage.getItem("playlists")) || [];
+    
+            function updateFavoriteIcons() {
+                favoriteIcons.forEach(icon => {
+                    const songCard = icon.closest(".song-card");
+                    const songTitle = songCard.querySelector("h3").innerText;
+    
+                    if (favorites.some(song => song.title === songTitle)) {
+                        icon.classList.add("liked");
+                        icon.classList.replace("fa-regular", "fa-solid");
+                    } else {
+                        icon.classList.remove("liked");
+                        icon.classList.replace("fa-solid", "fa-regular");
+                    }
+                });
+            }
+    
+            updateFavoriteIcons(); // Ensure correct heart styles on page load
+    
+            favoriteIcons.forEach(icon => {
+                icon.addEventListener("click", function () {
+                    const songCard = this.closest(".song-card");
+                    const songTitle = songCard.querySelector("h3").innerText;
+                    const songImage = songCard.querySelector("img").src;
+                    const songAudio = songCard.querySelector("audio source").src;
+    
+                    if (this.classList.contains("liked")) {
+                        this.classList.replace("fa-solid", "fa-regular");
+                        favorites = favorites.filter(song => song.title !== songTitle);
+                    } else {
+                        this.classList.replace("fa-regular", "fa-solid");
+                        favorites.push({ title: songTitle, image: songImage, audio: songAudio });
+                    }
+    
+                    this.classList.toggle("liked");
+                    localStorage.setItem("favorites", JSON.stringify(favorites));
+                });
+            });
+
+            // Add to Playlist functionality
+            const addToPlaylistButtons = document.querySelectorAll(".add-to-playlist");
+            addToPlaylistButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const songCard = this.closest(".song-card");
+                    const songTitle = songCard.querySelector("h3").innerText;
+                    const songImage = songCard.querySelector("img").src;
+                    const songAudio = songCard.querySelector("audio source").src;
+    
+                    const song = { title: songTitle, image: songImage, audio: songAudio };
+
+                    // Add song to playlist if not already added
+                    if (!playlists.some(s => s.title === songTitle)) {
+                        playlists.push(song);
+                        localStorage.setItem("playlists", JSON.stringify(playlists));
+                        alert(`${songTitle} Added to Your Playlist!`);
+                    } else {
+                        alert(`${songTitle} is already in the playlist.`);
+                    }
+                });
+            });
+        });
+
+        // Add to Playlist functionality
+document.querySelectorAll(".add-to-playlist").forEach(button => {
+    button.addEventListener("click", function () {
+        const songCard = this.closest(".song-card");
+        const songTitle = songCard.querySelector("h3").innerText;
+        const songImage = songCard.querySelector("img").src;
+        const songAudio = songCard.querySelector("audio source").src;
+
+        let playlist = JSON.parse(localStorage.getItem("playlist")) || [];
+
+        // Check if the song is already in the playlist
+        if (!playlist.some(song => song.title === songTitle)) {
+            playlist.push({ title: songTitle, image: songImage, audio: songAudio });
+            localStorage.setItem("playlist", JSON.stringify(playlist));
+            alert(`${songTitle} added to your playlist!`);
+        } else {
+            alert(`${songTitle} is already in your playlist!`);
+        }
+    });
+});
+
+
+        // Search functionality
+        document.getElementById("searchInput").addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            const songs = document.querySelectorAll(".song-card");
+            let found = false;
+    
+            songs.forEach(song => {
+                const title = song.getAttribute("data-song").toLowerCase();
+                const singer = song.getAttribute("data-singer").toLowerCase();
+                
+                if (title.includes(searchTerm) || singer.includes(searchTerm)) {
+                    song.style.display = "block";
+                    found = true;
+                } else {
+                    song.style.display = "none";
+                }
+            });
+            document.querySelector(".no-results").style.display = found ? "none" : "block";
+        });
+    </script>
+    
+</body>
+</html>
